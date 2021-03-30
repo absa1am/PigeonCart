@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/admin/view-categories', [CategoryController::class, 'index'])->name('view.categories');
     Route::get('/admin/create-category', [CategoryController::class, 'create'])->name('create.category');
     Route::post('/admin/store-category', [CategoryController::class, 'store'])->name('store.category');
+
+    Route::get('/admin/view-products', [ProductController::class, 'index'])->name('view.products');
+    Route::get('/admin/create-product', [ProductController::class, 'create'])->name('create.product');
+    Route::post('/admin/store-product', [ProductController::class, 'store'])->name('store.product');
 });
 
 require __DIR__.'/auth.php';
