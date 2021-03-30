@@ -51,7 +51,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'category' => $request->category,
             'price' => $request->price,
-            'image' => $request->image->move(public_path('img'),  time().'.'.$request->image->extension())
+            'image' => $request->image->move('img',  time().'.'.$request->image->extension())
         ]);
 
         return redirect()->route('view.products');
