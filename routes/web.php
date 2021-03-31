@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -17,9 +18,8 @@ use App\Http\Controllers\Backend\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/product/{$id}', [ProductController::class, 'show'])->name('show.product');
 
 Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('dashboard');
