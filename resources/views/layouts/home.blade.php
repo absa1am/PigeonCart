@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="vendor/css/style.css">
+        <link rel="stylesheet" href="/vendor/css/style.css">
         <title>@yield('title')</title>
     </head>
     <body>
@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <img src="vendor/img/avatar-1.jpg" alt="Logo" width="125px" height="25px">
+                        <img src="/vendor/img/avatar-1.jpg" alt="Logo" width="125px" height="25px">
                     </div>
 
                     <nav>
@@ -23,7 +23,13 @@
 
                             @if (Route::has('login'))
                                 @auth
-                                    <li><a href="{{ route('dashboard') }}">My Account</a></li>
+                                    @if(Auth::user()->role === 'customer')
+                                        <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
+                                    @endif
+
+                                    @if(Auth::user()->role === 'admin')
+                                        <li><a href="{{ route('admin.dashboard') }}">My Account</a></li>
+                                    @endif
                                 @else
                                     <li><a href="{{ route('login') }}">Log in</a></li>
 

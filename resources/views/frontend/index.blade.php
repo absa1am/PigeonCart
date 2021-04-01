@@ -24,8 +24,9 @@
             @foreach($products as $product)
                 <div class="col-4">
                     <img src="{{ $product->image }}" alt="" width="240px" height="240">
-                    <h4><a href="{{ route('show.product', ['id', $product->id]) }}">{{ $product->name }}</a></h4>
+                    <h4><a href="\{{ route('show.product', ['id', $product->id]) }}">{{ $product->name }}</a></h4>
                     <p>{{ $product->price }} BDT</p>
+                    <p>{{ $product->id }}</p>
                 </div>
             @endforeach
         </div>
