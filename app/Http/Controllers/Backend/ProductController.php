@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.create-product');
+        $categories = Category::all();
+
+        return view('backend.create-product', ['categories' => $categories]);
     }
 
     /**
@@ -41,7 +44,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'string|max:25|required',
             'description' => 'string|max:100|required',
-            'category' => 'string|max:25|nullable',
+            'category_id' => 'integer|max:25|nullable',
             'price' => 'integer|required',
             'image' => 'required|image|mimes:jpg,png,jpeg'
         ]);
@@ -49,7 +52,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'category' => $request->category,
+            'category_id' => $request->category_id,
             'price' => $request->price,
             'image' => $request->image->move('img',  time().'.'.$request->image->extension())
         ]);
@@ -65,7 +68,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail(1);
+
+        return view('frontend.show-product', ['product' => $product]);
     }
 
     /**

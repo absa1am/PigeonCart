@@ -36,12 +36,15 @@
                                 <x-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required />
                             </div>
 
-                            <!-- Product Category -->
-                            <div class="mt-4">
-                                <x-label for="category" :value="__('Category')" />
+                            <label class="block">
+                                <x-label for="category_id" :value="__('Category')" />
 
-                                <x-input id="category" class="block mt-1 w-full" type="text" name="category" :value="old('category')" />
-                            </div>
+                                <select class="form-select block w-full mt-1" name="category_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
 
                             <!-- Product Price -->
                             <div class="mt-4">
