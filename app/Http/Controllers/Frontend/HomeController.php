@@ -16,8 +16,9 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
+        $latest = Product::latest()->first();
 
-        return view('frontend.index', ['products' => $products]);
+        return view('frontend.index', ['products' => $products, 'latest' => $latest]);
     }
 
     /**

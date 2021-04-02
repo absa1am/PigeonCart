@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-2">
-            <img src="vendor/img/product1.png" alt="">
+            <img src="\{{ $latest->image }}" width="600px" height="500px" alt="Latest Product">
         </div>
     </div>
 @endsection
@@ -23,9 +23,9 @@
         <div class="row">
             @foreach($products as $product)
                 <div class="col-4">
-                    <img src="{{ asset($product->image) }}" alt="" width="240px" height="240">
-                    <h4><a href="{{ route('show.product', ['id', $product->id]) }}">{{ $product->name }}</a></h4>
-                    <p>{{ $product->price }} BDT</p>
+                    <img src="\{{ $product->image }}" alt="" width="240px" height="240">
+                    <h4><a href="{{ route('show.product', ['id' => $product->id]) }}">Name: {{ $product->name }}</a></h4>
+                    <p>Price: {{ $product->price }} BDT</p>
                 </div>
             @endforeach
         </div>
