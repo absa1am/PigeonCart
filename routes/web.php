@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\ProductController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
 
 Route::middleware(['auth', 'role'])->group(function () {

@@ -21,6 +21,13 @@ class ProductController extends Controller
         return view('backend.view-products', ['products' => $products]);
     }
 
+    public function allProducts()
+    {
+        $products = Product::latest()->get();
+
+        return view('frontend.view-products', ['products' => $products]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -68,7 +75,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail(1);
+        $product = Product::findOrFail($id);
 
         return view('frontend.show-product', ['product' => $product]);
     }

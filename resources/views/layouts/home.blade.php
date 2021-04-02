@@ -10,14 +10,14 @@
         <div class="header">
             <div class="container">
                 <div class="navbar">
-                    <div class="logo">
-                        <img src="/vendor/img/avatar-1.jpg" alt="Logo" width="125px" height="25px">
+                    <div class="logo" style="color: indigo;">
+                        <h2>Demo</h2>
                     </div>
 
                     <nav>
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="#">Products</a></li>
+                            <li><a href="{{ route('all.products') }}">Products</a></li>
                             <li><a href="#">Category</a></li>
                             <li><a href="#">Contact</a></li>
 
