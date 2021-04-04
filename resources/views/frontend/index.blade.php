@@ -7,7 +7,7 @@
         <div class="col-2">
             <h1>New Dress</h1>
             <p>Here is the new dresses.</p>
-            <a class="btn" href="#">Explore</a>
+            <a class="btn" href="{{ route('show.product', ['id' => $latest->id])}}">Explore</a>
         </div>
 
         <div class="col-2">
