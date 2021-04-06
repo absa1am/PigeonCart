@@ -29,8 +29,8 @@
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Price
                                   </th>
-                                  <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
+                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
                                   </th>
                                 </tr>
                               </thead>
@@ -60,8 +60,13 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                       {{ $product->price }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+                                          <a href="#">Edit</a>
+                                        </button>
+                                        <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+                                          <a href="#">Delete</a>
+                                        </button>
                                     </td>
                                   </tr>
                                 @endforeach
