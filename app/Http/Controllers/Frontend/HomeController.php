@@ -15,8 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
         $latest = Product::latest()->first();
+        $products = Product::inRandomOrder()->latest()->limit(12)->get();
 
         return view('frontend.index', ['products' => $products, 'latest' => $latest]);
     }
