@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function allProducts()
     {
-        $products = Product::latest()->get();
+        $products = Product::inRandomOrder()->limit(36)->get();
 
         return view('frontend.view-products', ['products' => $products]);
     }
