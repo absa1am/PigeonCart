@@ -106,7 +106,7 @@
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="{{ route('create.product') }}">
-                                    {{ __('Add Products') }}
+                                    {{ __('Create Products') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="#">

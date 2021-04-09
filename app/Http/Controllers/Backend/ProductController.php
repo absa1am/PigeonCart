@@ -88,7 +88,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $product = Product::findOrFail($id);
+
+        return view('backend.edit-product', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
@@ -100,7 +103,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+        $product->price = $request->price;
+
+        if($request->hasFile('image'))
+        {
+            $product->image = $request->image->move('img', time().$request->image->extension());
+        }
+
+        $product->save();
+
+        return redirect()->route('view.products');
     }
 
     /**
@@ -111,6 +128,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->back();
     }
 }
