@@ -51,7 +51,7 @@
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">
                                               <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
-                                                <a href="#">Edit</a>
+                                                <a href="{{ route('edit.category', ['id' => $category->id]) }}">Edit</a>
                                               </button>
                                               <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
                                                 <a href="{{ route('delete.category', ['id' => $category->id]) }}">Delete</a>

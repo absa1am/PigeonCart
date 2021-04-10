@@ -70,7 +70,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('backend.edit-category', ['category' => $category]);
     }
 
     /**
@@ -82,7 +84,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->save();
+
+        return redirect()->route('view.categories');
     }
 
     /**
