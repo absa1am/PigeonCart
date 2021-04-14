@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -21,6 +23,9 @@ use App\Http\Controllers\Backend\ProductController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
