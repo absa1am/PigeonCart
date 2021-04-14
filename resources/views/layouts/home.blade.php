@@ -32,6 +32,7 @@
 
                             @if (Route::has('login'))
                                 @auth
+                                    <li><a href="{{ route('cart') }}">Cart</a></li>
                                     @if(Auth::user()->role === 'customer')
                                         <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
                                     @endif

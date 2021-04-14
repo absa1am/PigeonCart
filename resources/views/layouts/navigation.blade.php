@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="">
-                        {{ __('WishList') }}
+                    <x-nav-link href="{{ route('cart') }}">
+                        {{ __('Cart') }}
                     </x-nav-link>
                 </div>
 
