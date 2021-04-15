@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.prod
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/order', [OrderController::class, 'store'])->name('order');
 
 Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');

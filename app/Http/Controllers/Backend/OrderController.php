@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use App\Models\Order;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,31 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'pending')->get();
-
-        $total = 50;
-        for($item = 0; $item < count($carts); $item++) {
-            $total += $carts[$item]->product->price * $carts[$item]->quantity;
-        }
-
-        return view('frontend.shopping-cart', ['carts' => $carts, 'total' => $total]);
-    }
-
-    public function addToCart($productId)
-    {
-        $added = Cart::where([['user_id', Auth::user()->id], ['product_id', $productId]])->first();
-
-        if($added) {
-            $added->quantity++;
-            $added->save();
-        } else {
-            $cart = Cart::create([
-                'user_id' => Auth::user()->id,
-                'product_id' => $productId,
-            ]);
-        }
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -61,7 +38,21 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carts = Cart::where('user_id', Auth::user()->id)->get();
+
+        $total = 0;
+        for($item = 0; $item < count($carts); $item++) {
+            $total += $carts[$item]->product->price * $carts[$item]->quantity;
+            $carts[$item]->status = 'ordered';
+            $carts[$item]->save();
+        }
+
+        $order = Order::create([
+            'user_id' => Auth::user()->id,
+            'grandtotal' => $total
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
