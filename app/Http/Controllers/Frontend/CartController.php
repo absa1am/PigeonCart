@@ -16,7 +16,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'pending')->get();
+        $carts = Cart::where([
+            ['user_id', Auth::user()->id],
+            ['status', 'pending']])->get();
 
         $total = 50;
         for($item = 0; $item < count($carts); $item++) {
@@ -28,7 +30,10 @@ class CartController extends Controller
 
     public function addToCart($productId)
     {
-        $added = Cart::where([['user_id', Auth::user()->id], ['product_id', $productId]])->first();
+        $added = Cart::where([
+            ['user_id', Auth::user()->id],
+            ['product_id', $productId],
+            ['status', 'pending']])->first();
 
         if($added) {
             $added->quantity++;
