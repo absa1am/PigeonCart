@@ -16,9 +16,11 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
+        $carts = Cart::where([
+            ['user_id', Auth::user()->id],
+            ['status', 'pending']])->get();
 
-        return view('frontend.checkout', ['carts' => $carts]);
+        return view('frontend.checkout', ['carts' => $carts, 'counts' => count($carts)]);
     }
 
     /**
