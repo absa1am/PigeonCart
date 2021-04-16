@@ -132,12 +132,12 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link href="#">
+                                <x-dropdown-link href="{{ route('view.orders') }}">
                                     {{ __('View Orders') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="#">
-                                    {{ __('Add Orders') }}
+                                    {{ __('Create Order') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="#">
@@ -168,7 +168,7 @@
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="{{ route('create.user') }}">
-                                    {{ __('Add Users') }}
+                                    {{ __('Create User') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link href="#">

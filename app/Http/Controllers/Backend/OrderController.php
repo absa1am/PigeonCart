@@ -17,7 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+
+        return view('backend.view-orders', ['orders' => $orders]);
     }
 
     /**
@@ -74,7 +76,12 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        // $carts = Cart::where([
+        //     ['user_id', $order->user_id],
+        //     ['status', 'ordered']])->get();
+
+        return view('backend.edit-order', ['order' => $order]);
     }
 
     /**
@@ -86,7 +93,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $order->grandtotal = $request->grandtotal;
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -97,6 +110,10 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $order->delete();
+
+        return redirect()->back();
     }
 }
