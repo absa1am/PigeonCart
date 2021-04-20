@@ -20,7 +20,10 @@ class CheckoutController extends Controller
             ['user_id', Auth::user()->id],
             ['status', 'pending']])->get();
 
-        return view('frontend.checkout', ['carts' => $carts, 'counts' => count($carts)]);
+        $counts = count($carts);
+        if(!$counts) return redirect()->route('cart');
+
+        return view('frontend.checkout', ['carts' => $carts, 'counts' => $counts]);
     }
 
     /**
