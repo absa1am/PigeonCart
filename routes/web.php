@@ -24,16 +24,18 @@ use App\Http\Controllers\Backend\OrderController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/order', [OrderController::class, 'store'])->name('order');
 
-Route::middleware(['auth', 'role'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');
+    
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/order', [OrderController::class, 'store'])->name('order');
 });
 
-Route::middleware(['auth', 'role'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/view-users', [UserController::class, 'index'])->name('view.users');
     Route::get('/admin/create-user', [UserController::class, 'create'])->name('create.user');
