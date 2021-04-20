@@ -25,7 +25,7 @@ class CartController extends Controller
             $total += $carts[$item]->product->price * $carts[$item]->quantity;
         }
 
-        return view('frontend.shopping-cart', ['carts' => $carts, 'total' => $total]);
+        return view('frontend.shopping-cart', ['carts' => $carts, 'total' => $total, 'count' => count($carts)]);
     }
 
     public function addToCart($productId)
