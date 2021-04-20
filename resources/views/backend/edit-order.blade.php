@@ -40,10 +40,10 @@
                                 <x-label for="status" :value="__('Order Status')" />
 
                                 <select class="form-select block w-full mt-1" name="status">
-                                    <option value="1" <?php $order->status == "pending"? print "selected":""; ?>>Pending</option>
-                                    <option value="2" <?php $order->status == "processing"? print "selected":""; ?>>Processing</option>
-                                    <option value="3" <?php $order->status == "completed"? print "selected":""; ?>>Completed</option>
-                                    <option value="4" <?php $order->status == "cancel"? print "selected":""; ?>>Cancelled</option>
+                                    <option value="1" <?php echo $order->status == "Pending"? "selected":""; ?>>Pending</option>
+                                    <option value="2" <?php echo $order->status == "Processing"? "selected":""; ?>>Processing</option>
+                                    <option value="3" <?php echo $order->status == "Completed"? "selected":""; ?>>Completed</option>
+                                    <option value="4" <?php echo $order->status == "Cancel"? "selected":""; ?>>Cancelled</option>
                                 </select>
                             </label>
 
