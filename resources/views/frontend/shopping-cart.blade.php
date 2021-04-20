@@ -150,6 +150,12 @@
             </div>
           </div>
         </div>
+      @else
+      <div class="flex items-center justify-center">
+        <div class="font-bold">
+          Your cart is empty.
+        </div>
+      </div>
       @endif
     </div>
   </div>
