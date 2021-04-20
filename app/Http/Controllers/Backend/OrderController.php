@@ -40,9 +40,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
+        $carts = Cart::where([
+            ['user_id', Auth::user()->id],
+            ['status', 'pending']])->get();
 
-        $total = 0;
+        $total = 50;
         for($item = 0; $item < count($carts); $item++) {
             $total += $carts[$item]->product->price * $carts[$item]->quantity;
             $carts[$item]->status = 'ordered';
