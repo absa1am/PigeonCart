@@ -35,11 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/order', [OrderController::class, 'store'])->name('order');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/view-users', [UserController::class, 'index'])->name('view.users');
     Route::get('/admin/create-user', [UserController::class, 'create'])->name('create.user');
     Route::post('/admin/store-user', [UserController::class, 'store'])->name('store.user');
+    Route::get('/admin/delete-user/{id}', [UserController::class, 'destroy'])->name('delete.user');
 
     Route::get('/admin/view-categories', [CategoryController::class, 'index'])->name('view.categories');
     Route::get('/admin/create-category', [CategoryController::class, 'create'])->name('create.category');
