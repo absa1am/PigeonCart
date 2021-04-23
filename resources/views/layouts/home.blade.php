@@ -33,11 +33,11 @@
                             @if (Route::has('login'))
                                 @auth
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
-                                    @if(Auth::user()->role === 'customer')
+                                    @if(Auth::user()->hasRole('Customer'))
                                         <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
                                     @endif
 
-                                    @if(Auth::user()->role === 'admin')
+                                    @if(Auth::user()->hasRole('Admin'))
                                         <li><a href="{{ route('admin.dashboard') }}">My Account</a></li>
                                     @endif
                                 @else

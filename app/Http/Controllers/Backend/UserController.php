@@ -41,6 +41,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::where('name', 'Customer')->first();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -52,6 +54,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $user->roles()->attach($role);
 
         return redirect('/admin/view-users');
     }

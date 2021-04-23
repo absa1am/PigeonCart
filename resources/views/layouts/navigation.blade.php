@@ -5,13 +5,13 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    @if(Auth::user()->role === 'admin')
+                    @if(Auth::user()->roles[0]->name === 'Admin')
                         <a href="{{ route('admin.dashboard') }}">
                             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         </a>
                     @endif
 
-                    @if(Auth::user()->role === 'customer')
+                    @if(Auth::user()->hasRole('Customer'))
                         <a href="{{ route('user.dashboard') }}">
                             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         </a>
@@ -19,7 +19,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                @if(Auth::user()->role === 'admin')
+                @if(Auth::user()->hasRole('Admin'))
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
@@ -27,7 +27,7 @@
                     </div>
                 @endif
 
-                @if(Auth::user()->role === 'customer')
+                @if(Auth::user()->hasRole('Customer'))
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                             {{ __('Dashboard') }}
@@ -53,7 +53,7 @@
                     </x-nav-link>
                 </div>
 
-                @if(Auth::user()->role === 'admin')
+                @if(Auth::user()->hasRole('Admin'))
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
@@ -229,13 +229,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if(Auth::user()->role === 'admin')
+            @if(Auth::user()->hasRole('Admin'))
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             @endif
 
-            @if(Auth::user()->role === 'customer')
+            @if(Auth::user()->hasRole('Customer'))
                 <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>

@@ -41,6 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
     public function address()
     {
         return $this->hasOne(Address::class);
@@ -49,5 +54,10 @@ class User extends Authenticatable
     public function order()
     {
         return $this->hasOne(Order::class);
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->first() !== null;
     }
 }
