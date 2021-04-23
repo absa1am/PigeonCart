@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -32,6 +33,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::where('name', 'Customer')->first();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -44,9 +47,11 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]));
 
+        $user->roles()->attach($role);
+
         event(new Registered($user));
 
-        if(Auth::user()->role === 'admin')
+        if(Auth::user()->roles[0]->name === 'Admin')
             return redirect(RouteServiceProvider::ADMIN_HOME);
         else return redirect(RouteServiceProvider::USER_HOME);
     }
