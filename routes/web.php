@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\AddressController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -33,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/order', [OrderController::class, 'store'])->name('order');
+
+    Route::post('/store-address', [AddressController::class, 'store'])->name('store.address');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

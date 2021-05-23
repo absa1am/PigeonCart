@@ -13,7 +13,7 @@
                         <button class="flex text-sm text-gray-700 ml-8 focus:outline-none"><span class="flex items-center justify-center border-2 border-blue-500 rounded-full h-5 w-5 mr-2">2</span> Checkout</button>
                         <button class="flex text-sm text-gray-500 ml-8 focus:outline-none" disabled><span class="flex items-center justify-center border-2 border-gray-500 rounded-full h-5 w-5 mr-2">3</span> Order</button>
                     </div>
-                    <form method="POST" action="{{ route('order') }}" class="mt-8 lg:w-3/4">
+                    <form method="POST" action="{{ route('store.address') }}" class="mt-8 lg:w-3/4">
                         @csrf
                         <div>
                             <h4 class="text-sm text-gray-500 font-medium">Delivery method</h4>
@@ -66,8 +66,7 @@
                                 <span class="mx-2">Back step</span>
                             </a>
                             <button class="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                                <span>Place Order</span>
-                                <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <span>Save Address</span>
                             </button>
                         </div>
                     </form>
@@ -101,6 +100,16 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <form class="" action="{{ route('order') }}" method="POST">
+                        @csrf
+                        <div class="flex items-right justify-end mt-8">
+                            <button class="flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                                <span>Place Order</span>
+                                <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

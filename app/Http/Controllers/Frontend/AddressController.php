@@ -38,7 +38,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $address = Address::create([
-            'name' => $request->name,
+            'name' => Auth::user()->name,
             'city' => $request->city,
             'zip' => $request->zip,
             'phone' => $request->phone,
@@ -46,7 +46,7 @@ class AddressController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return route('home');
+        return redirect()->route('home');
     }
 
     /**
