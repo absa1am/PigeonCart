@@ -28,7 +28,7 @@
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('all.products') }}">Products</a></li>
                             <li><a href="#">Category</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
 
                             @if (Route::has('login'))
                                 @auth
