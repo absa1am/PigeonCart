@@ -18,7 +18,7 @@ class CartController extends Controller
     {
         $carts = Cart::where([
             ['user_id', Auth::user()->id],
-            ['status', 'pending']])->get();
+            ['status', 'Pending']])->get();
 
         $total = 50;
         for($item = 0; $item < count($carts); $item++) {

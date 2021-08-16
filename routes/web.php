@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AddressController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -30,6 +31,9 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+
+    Route::get('/settings/profile', [ProfileController::class, 'index'])->name('settings.profile');
+    Route::post('/update-settings/{id}', [ProfileController::class, 'update'])->name('settings.update');
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');

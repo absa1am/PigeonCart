@@ -48,7 +48,7 @@
                                     </select>
                                 </label>
                                 <label class="block flex-1 ml-3">
-                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" placeholder="01XXXXXXXXX">
+                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" placeholder="{{ $user->phone }}">
                                 </label>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <h4 class="text-sm text-gray-500 font-medium">Address</h4>
                             <div class="mt-6 flex">
                                 <label class="block flex-1 ml-0">
-                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" placeholder="Address">
+                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" placeholder="{{ $user->address }}">
                                 </label>
                             </div>
                         </div>

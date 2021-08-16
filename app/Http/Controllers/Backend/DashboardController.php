@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -14,7 +18,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $order = count(Order::whereDate('created_at', Carbon::today())->get());
+        $sales = count(Order::where('status', 'Completed')->get());
+        $user = count(User::whereDate('created_at', Carbon::today())->get());
+        $totalUser = count(User::all());
+
+        return view('dashboard', ['order' => $order, 'sales' => $sales, 'user' => $user, 'totalUser' => $totalUser]);
     }
 
     /**

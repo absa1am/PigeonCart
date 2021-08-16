@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->enum('status', ['pending', 'ordered', 'completed'])->default('pending');
+            $table->enum('status', ['Pending', 'Ordered', 'Completed'])->default('Pending');
             $table->integer('quantity')->default(1);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

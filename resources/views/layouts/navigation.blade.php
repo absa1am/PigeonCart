@@ -177,6 +177,12 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ url('/') }}">
+                            {{ __('Notification') }}
+                        </x-nav-link>
+                    </div>
                 </div>
             @endif
 
@@ -196,7 +202,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link href="#">
+                        <x-dropdown-link href="{{ route('settings.profile') }}">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 

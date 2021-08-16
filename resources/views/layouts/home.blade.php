@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -32,7 +32,7 @@
 
                             @if (Route::has('login'))
                                 @auth
-                                    <li><a href="{{ route('cart') }}">Cart</a></li>
+                                    <li><a href="{{ route('cart') }}">Cart({{ count(array(Auth::user()->carts)) }})</a></li>
                                     @if(Auth::user()->hasRole('Customer'))
                                         <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
                                     @endif

@@ -18,12 +18,13 @@ class CheckoutController extends Controller
     {
         $carts = Cart::where([
             ['user_id', Auth::user()->id],
-            ['status', 'pending']])->get();
+            ['status', 'Pending']])->get();
 
         $counts = count($carts);
         if(!$counts) return redirect()->route('cart');
 
-        return view('frontend.checkout', ['carts' => $carts, 'counts' => $counts]);
+        $user = Auth::user();
+        return view('frontend.checkout', ['user' => $user, 'carts' => $carts, 'counts' => $counts]);
     }
 
     /**
@@ -66,7 +67,9 @@ class CheckoutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+
+        return view('backend.profile-settings', ['user' => $user]);
     }
 
     /**
