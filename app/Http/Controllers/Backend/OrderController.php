@@ -67,7 +67,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('backend.view-invoice');
     }
 
     /**
