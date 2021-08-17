@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $orders = count(Order::whereDate('created_at', Carbon::today())->get());
-        $totalOrders = Order::all();
+        $totalOrders = Order::latest()->take(5)->get();
         $completedOrders = Order::where('status', 'Completed')->get();
         $user = count(User::whereDate('created_at', Carbon::today())->get());
         $totalUser = count(User::all());
