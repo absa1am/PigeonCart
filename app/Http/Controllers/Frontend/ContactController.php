@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -35,7 +36,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'string|max:25|required',
+            'email' => 'string|max:20|required',
+            'phone' => 'string|max:11|required',
+            'message' => 'string|max:255|required'
+        ]);
+
+        $contact = Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
+            'status' => 'Unread'
+        ]);
+
+        return redirect()->back()->with('message', 'Thank you for sending us your message.');
     }
 
     /**

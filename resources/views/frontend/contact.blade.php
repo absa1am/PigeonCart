@@ -5,14 +5,20 @@
 @section('content')
  <div class="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
     <div class="container mx-auto">
+        @if(Session::has('message'))
+        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 text-center" role="alert">
+            <p class="font-bold">Successfully sent the message!</p>
+        </div>
+        @endif
+
         <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
             <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Contact Us</h1>
                 <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
             </div>
             <div class="m-7">
-                <form action="https://api.web3forms.com/submit" method="POST" id="form">
-
+                <form action="{{ route('store-contact') }}" method="POST" id="form">
+                    @csrf
                     <input type="hidden" name="apikey" value="YOUR_ACCESS_KEY_HERE">
                     <input type="hidden" name="subject" value="New Submission from Web3Forms">
                     <input type="checkbox" name="botcheck" id="" style="display: none;">
@@ -45,52 +51,4 @@
         </div>
     </div>
 </div>
-
-    <script>
-        const form = document.getElementById('form');
-        const result = document.getElementById('result');
-
-        form.addEventListener('submit', function(e) {
-            const formData = new FormData(form);
-            e.preventDefault();
-            var object = {};
-            formData.forEach((value, key) => {
-                object[key] = value
-            });
-            var json = JSON.stringify(object);
-            result.innerHTML = "Please wait..."
-
-            fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: json
-                })
-                .then(async (response) => {
-                    let json = await response.json();
-                    if (response.status == 200) {
-                        result.innerHTML = json.message;
-                        result.classList.remove('text-gray-500');
-                        result.classList.add('text-green-500');
-                    } else {
-                        console.log(response);
-                        result.innerHTML = json.message;
-                        result.classList.remove('text-gray-500');
-                        result.classList.add('text-red-500');
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    result.innerHTML = "Something went wrong!";
-                })
-                .then(function() {
-                    form.reset();
-                    setTimeout(() => {
-                        result.style.display = "none"; 
-                    }, 5000);
-                });
-        })
-    </script>
 @endsection

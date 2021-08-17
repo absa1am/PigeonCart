@@ -33,7 +33,7 @@ class CartController extends Controller
         $added = Cart::where([
             ['user_id', Auth::user()->id],
             ['product_id', $productId],
-            ['status', 'pending']])->first();
+            ['status', 'Pending']])->first();
 
         if($added) {
             $added->quantity++;
