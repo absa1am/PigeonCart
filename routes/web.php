@@ -13,17 +13,6 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
@@ -41,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::get('/add-cart/{product_id}', [CartController::class, 'addToCart'])->name('add.cart');
+    Route::get('/edit-cart/{product_id}', [CartController::class, 'edit'])->name('edit.cart');
+    Route::post('/update-cart/{product_id}', [CartController::class, 'update'])->name('update.cart');
+    Route::get('/delete-cart/{product_id}', [CartController::class, 'destroy'])->name('delete.cart');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/order', [OrderController::class, 'store'])->name('order');

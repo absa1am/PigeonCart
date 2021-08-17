@@ -18,12 +18,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $order = count(Order::whereDate('created_at', Carbon::today())->get());
-        $sales = count(Order::where('status', 'Completed')->get());
+        $orders = count(Order::whereDate('created_at', Carbon::today())->get());
+        $totalOrders = Order::all();
+        $completedOrders = Order::where('status', 'Completed')->get();
         $user = count(User::whereDate('created_at', Carbon::today())->get());
         $totalUser = count(User::all());
 
-        return view('dashboard', ['order' => $order, 'sales' => $sales, 'user' => $user, 'totalUser' => $totalUser]);
+        $sales = 0;
+        foreach($completedOrders as $order)
+            $sales += $order->grandtotal;
+
+        return view('dashboard', ['orders' => $orders, 'totalOrders' => $totalOrders, 'sales' => $sales, 'user' => $user, 'totalUser' => $totalUser]);
     }
 
     /**

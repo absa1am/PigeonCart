@@ -31,11 +31,9 @@
                     <td>
                       <a href="#">
                         <p class="mb-2 md:ml-4">{{ $cart->product->name }}</p>
-                        <form action="" method="POST">
                           <button type="submit" class="text-gray-700 md:ml-4">
-                            <small>(Remove item)</small>
+                            <a href="{{ route('delete.cart', ['product_id' => $cart->product->id]) }}"><small>(Remove item)</small></a>
                           </button>
-                        </form>
                       </a>
                     </td>
                     <td class="justify-center md:justify-end md:flex mt-6">

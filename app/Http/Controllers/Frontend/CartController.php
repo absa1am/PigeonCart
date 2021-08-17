@@ -111,6 +111,11 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $carts = Cart::where([['product_id', $id], ['user_id', Auth::user()->id]])->get();
+
+        foreach($carts as $cart)
+            $cart->delete();
+        
+        return redirect()->back();
     }
 }
