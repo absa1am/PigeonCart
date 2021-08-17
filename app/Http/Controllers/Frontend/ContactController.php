@@ -15,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+
+        return view('backend.view-contacts', ['contacts' => $contacts]);
     }
 
     /**
@@ -62,30 +64,12 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $contact = Contact::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $contact->status = "Read";
+        $contact->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return view('backend.view-contact', ['contact' => $contact]);
     }
 
     /**
@@ -96,6 +80,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+
+        $contact->delete();
+        return redirect()->route('view-contacts');
     }
 }

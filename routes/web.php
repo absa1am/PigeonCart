@@ -29,6 +29,9 @@ Route::get('/products', [ProductController::class, 'allProducts'])->name('all.pr
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/store-contact', [ContactController::class, 'store'])->name('store-contact');
+Route::get('/view-contacts', [ContactController::class, 'index'])->name('view-contacts');
+Route::get('/view-contact/{id}', [ContactController::class, 'show'])->name('view-contact');
+Route::get('/delete-contact/{id}', [ContactController::class, 'destroy'])->name('delete-contact');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');

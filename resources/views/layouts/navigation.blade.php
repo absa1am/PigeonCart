@@ -179,8 +179,9 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link href="{{ url('/') }}">
-                            {{ __('Notification') }}
+                        <x-nav-link href="{{ route('view-contacts') }}">
+                            {{ __('Messages') }}
+                            ({{ count(\App\Models\Contact::where('status', 'Unread')->get()) }})
                         </x-nav-link>
                     </div>
                 </div>
