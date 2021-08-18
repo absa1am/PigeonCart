@@ -42,8 +42,9 @@
                                 <select class="form-select block w-full mt-1" name="status">
                                     <option value="1" <?php echo $order->status == "Pending"? "selected":""; ?>>Pending</option>
                                     <option value="2" <?php echo $order->status == "Processing"? "selected":""; ?>>Processing</option>
-                                    <option value="3" <?php echo $order->status == "Completed"? "selected":""; ?>>Completed</option>
-                                    <option value="4" <?php echo $order->status == "Cancel"? "selected":""; ?>>Cancelled</option>
+                                    <option value="3" <?php echo $order->status == "Shipped"? "selected":""; ?>>Shipped</option>
+                                    <option value="4" <?php echo $order->status == "Completed"? "selected":""; ?>>Completed</option>
+                                    <option value="5" <?php echo $order->status == "Cancel"? "selected":""; ?>>Cancelled</option>
                                 </select>
                             </label>
 

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Order;
 
-class BackendContactController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,9 +46,13 @@ class BackendContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $user_id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $carts = Cart::where([['status', 'Ordered'], ['user_id', $user_id]])->get();
+
+        // dd($products);
+        return view('backend.view-invoice', ['order' => $order, 'carts' => $carts]);
     }
 
     /**

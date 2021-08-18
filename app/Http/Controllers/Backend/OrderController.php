@@ -67,7 +67,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('backend.view-invoice');
+        //
     }
 
     /**
@@ -81,7 +81,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         // $carts = Cart::where([
         //     ['user_id', $order->user_id],
-        //     ['status', 'ordered']])->get();
+        //     ['status', 'Ordered']])->get();
 
         return view('backend.edit-order', ['order' => $order]);
     }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\InvoiceController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
@@ -65,7 +66,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/edit-order/{id}', [OrderController::class, 'edit'])->name('edit.order');
     Route::post('/admin/update-order/{id}', [OrderController::class, 'update'])->name('update.order');
     Route::get('/admin/delete-order/{id}', [OrderController::class, 'destroy'])->name('delete.order');
-    Route::get('/admin/view-invoice/{id}', [OrderController::class, 'show'])->name('view.invoice');
+
+    Route::get('/admin/view-invoice/{id}/{user_id}', [InvoiceController::class, 'show'])->name('view.invoice');
 });
 
 require __DIR__.'/auth.php';

@@ -11,7 +11,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>Hello, world!</title>
+    <title>Demo - Invoice</title>
   </head>
   <body>
 
@@ -22,17 +22,16 @@
 
                 <!-- Hi  -->
                             <div class="invoice-title">
-                                <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+                                <h2>Invoice</h2><h3 class="pull-right">Order #{{ $order->id }}</h3>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <address>
-                                    <strong>Billed To:</strong><br>
-                                        John Smith<br>
-                                        1234 Main<br>
-                                        Apt. 4B<br>
-                                        Springfield, ST 54321
+                                    <strong>Product From:</strong><br>
+                                        Demo<br>
+                                        Dept. CSE, MBSTU<br>
+                                        Santosh, Tangail - 1902
                                     </address>
                                 </div>
                                 <div class="col-xs-6 text-right">
@@ -80,26 +79,15 @@
                                                     <td class="text-right"><strong>Totals</strong></td>
                                                 </tr>
                                             </thead>
-                                            <tbody>
                                                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                                @foreach($carts as $cart)
                                                 <tr>
-                                                    <td>BS-200</td>
-                                                    <td class="text-center">$10.99</td>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-right">$10.99</td>
+                                                    <td>{{ $cart->product->name }}</td>
+                                                    <td class="text-center">{{ $cart->product->price }}</td>
+                                                    <td class="text-center">{{ $cart->quantity }}</td>
+                                                    <td class="text-right">{{ $cart->quantity * $cart->product->price }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>BS-400</td>
-                                                    <td class="text-center">$20.00</td>
-                                                    <td class="text-center">3</td>
-                                                    <td class="text-right">$60.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BS-1000</td>
-                                                    <td class="text-center">$600.00</td>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-right">$600.00</td>
-                                                </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td class="thick-line"></td>
                                                     <td class="thick-line"></td>
@@ -116,7 +104,7 @@
                                                     <td class="no-line"></td>
                                                     <td class="no-line"></td>
                                                     <td class="no-line text-center"><strong>Total</strong></td>
-                                                    <td class="no-line text-right">$685.99</td>
+                                                    <td class="no-line text-right">{{ $order->grandtotal }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

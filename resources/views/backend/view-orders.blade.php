@@ -64,6 +64,11 @@
                                         <button class="modal-open bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
                                           Delete
                                         </button>
+                                        @if($order->status === 'Shipped')
+                                          <button class="bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
+                                            <a href="{{ route('view.invoice', ['id' => $order->id, 'user_id' => $order->user_id]) }}" target="_blank">Invoice</a>
+                                          </button>
+                                        @endif
                                           <!--Modal-->
                                           <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
                                             <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
