@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 
 class InvoiceController extends Controller
 {
@@ -51,8 +52,9 @@ class InvoiceController extends Controller
         $order = Order::findOrFail($id);
         $carts = Cart::where([['status', 'Ordered'], ['user_id', $user_id]])->get();
 
-        // dd($products);
-        return view('backend.view-invoice', ['order' => $order, 'carts' => $carts]);
+        $products = json_decode($order->products);
+
+        return view('backend.view-invoice', ['order' => $order, 'carts' => $carts, 'products' => $products]);
     }
 
     /**

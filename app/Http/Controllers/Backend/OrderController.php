@@ -45,14 +45,17 @@ class OrderController extends Controller
             ['status', 'Pending']])->get();
 
         $total = 50;
+        $products = [];
         for($item = 0; $item < count($carts); $item++) {
             $total += $carts[$item]->product->price * $carts[$item]->quantity;
             $carts[$item]->status = 'Ordered';
+            array_push($products, $carts[$item]->product_id);
             $carts[$item]->save();
         }
 
         $order = Order::create([
             'user_id' => Auth::user()->id,
+            'products' => json_encode($products),
             'grandtotal' => $total
         ]);
 
@@ -79,9 +82,6 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        // $carts = Cart::where([
-        //     ['user_id', $order->user_id],
-        //     ['status', 'Ordered']])->get();
 
         return view('backend.edit-order', ['order' => $order]);
     }
