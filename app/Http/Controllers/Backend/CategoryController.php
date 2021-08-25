@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -18,6 +19,14 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         return view('backend.view-categories', ['categories' => $categories]);
+    }
+
+    public function category($id)
+    {
+        $category = Category::findOrFail($id);
+        $products = Product::where('category_id', $id)->get();
+
+        return view('frontend.view-categorywiseproducts', ['category' => $category, 'products' => $products]);
     }
 
     /**

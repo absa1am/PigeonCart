@@ -32,7 +32,7 @@
                                 <div class="dropdown-content">
                                     <?php $categories = App\Models\Category::all(); ?>
                                     @foreach($categories as $category)
-                                        <a href="#" style="text-align:left">{{ $category->name }}</a>
+                                        <a href="{{ route('category.products', ['id' => $category->id]) }}" style="text-align:left">{{ $category->name }}</a>
                                     @endforeach
                                 </div>
                             </div></li>

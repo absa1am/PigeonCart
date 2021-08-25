@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\InvoiceController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'allProducts'])->name('all.products');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.product');
+Route::get('/products/category/{id}', [CategoryController::class, 'category'])->name('category.products');
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/store-contact', [ContactController::class, 'store'])->name('store-contact');
 Route::get('/view-contacts', [ContactController::class, 'index'])->name('view-contacts');
