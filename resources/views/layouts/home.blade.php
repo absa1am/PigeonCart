@@ -27,7 +27,15 @@
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('all.products') }}">Products</a></li>
-                            <li><a href="#">Category</a></li>
+                            <li><div class="dropdown">
+                            <button class="dropbtn">Category</button>
+                                <div class="dropdown-content">
+                                    <?php $categories = App\Models\Category::all(); ?>
+                                    @foreach($categories as $category)
+                                        <a href="#" style="text-align:left">{{ $category->name }}</a>
+                                    @endforeach
+                                </div>
+                            </div></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
 
                             @if (Route::has('login'))
