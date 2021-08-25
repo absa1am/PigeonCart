@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cart;
 use App\Models\Order;
-use App\Models\Product;
+use App\Models\OrderItem;
 
 class InvoiceController extends Controller
 {
@@ -47,14 +46,12 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $user_id)
+    public function show($id)
     {
         $order = Order::findOrFail($id);
-        $carts = Cart::where([['status', 'Ordered'], ['user_id', $user_id]])->get();
+        $items = OrderItem::where('order_id', $id)->get();
 
-        $products = json_decode($order->products);
-
-        return view('backend.view-invoice', ['order' => $order, 'carts' => $carts, 'products' => $products]);
+        return view('backend.view-invoice', ['order' => $order, 'items' => $items]);
     }
 
     /**

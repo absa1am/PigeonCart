@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderController extends Controller
 {
@@ -45,19 +46,27 @@ class OrderController extends Controller
             ['status', 'Pending']])->get();
 
         $total = 50;
-        $products = [];
         for($item = 0; $item < count($carts); $item++) {
             $total += $carts[$item]->product->price * $carts[$item]->quantity;
             $carts[$item]->status = 'Ordered';
-            array_push($products, $carts[$item]->product_id);
             $carts[$item]->save();
         }
 
         $order = Order::create([
             'user_id' => Auth::user()->id,
-            'products' => json_encode($products),
+            'status' => 'Pending',
             'grandtotal' => $total
         ]);
+
+        for($item = 0; $item < count($carts); $item++) {
+            $orderItem = OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $carts[$item]->product->id,
+                'quantity' => $carts[$item]->quantity,
+                'price' => $carts[$item]->product->price,
+                'amount' => $carts[$item]->product->price * $carts[$item]->quantity
+            ]);
+        }
 
         return redirect()->route('home');
     }

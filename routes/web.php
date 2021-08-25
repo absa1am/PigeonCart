@@ -67,7 +67,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/update-order/{id}', [OrderController::class, 'update'])->name('update.order');
     Route::get('/admin/delete-order/{id}', [OrderController::class, 'destroy'])->name('delete.order');
 
-    Route::get('/admin/view-invoice/{id}/{user_id}', [InvoiceController::class, 'show'])->name('view.invoice');
+    Route::get('/admin/view-invoice/{id}', [InvoiceController::class, 'show'])->name('view.invoice');
 });
 
 require __DIR__.'/auth.php';
