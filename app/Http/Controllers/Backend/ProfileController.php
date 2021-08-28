@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Models\User;
+use Illuminate\Support\Facades\Hash;
+use app\Models\User;
 
 class ProfileController extends Controller
 {
@@ -73,7 +74,28 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        $request->validate([
+            'name' => 'required|string|max:25',
+            'city' => 'required|string',
+            'zip' => 'required|string',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:12',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->city = $request->city;
+        $user->zip = $request->zip;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+
+        if($request->pass === $request->npass)
+            $user->password = Hash::make($request->pass);
+
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**

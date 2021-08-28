@@ -143,8 +143,8 @@
                                             </svg>
                                           </div>
                                           <input
-                                            type="email"
-                                            class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
+                                            type="password"
+                                            class="w-11/12 focus:outline-none focus:text-gray-600 p-2" name="pass"
                                             placeholder="******"
                                           />
                                         </div>
@@ -167,8 +167,8 @@
                                             </svg>
                                           </div>
                                           <input
-                                            type="email"
-                                            class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
+                                            type="password"
+                                            class="w-11/12 focus:outline-none focus:text-gray-600 p-2" name="npass"
                                             placeholder="******"
                                           />
                                         </div>
