@@ -61,6 +61,19 @@ class UserController extends Controller
         return redirect('/admin/view-users');
     }
 
+    public function updateAddress(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->city = $request->city;
+        $user->zip = $request->zip;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->save();
+
+        return redirect()->back();
+    }
+
     /**
      * Display the specified resource.
      *

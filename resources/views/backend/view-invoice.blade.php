@@ -37,6 +37,7 @@
                                     <strong>Shipped To:</strong><br>
                                         {{ $order->user->name }}<br>
                                         {{ $order->user->address }}<br>
+                                        {{ $order->user->city}}, {{ $order->user->zip}}<br>
                                         {{ $order->user->phone }}<br>
                                     </address>
                                 </div>

@@ -9,54 +9,51 @@
             <div class="flex flex-col lg:flex-row mt-8">
                 <div class="w-full lg:w-1/2 order-2">
                     <div class="flex items-center">
-                        <button class="flex text-sm text-blue-500 focus:outline-none"><span class="flex items-center justify-center text-white bg-blue-500 rounded-full h-5 w-5 mr-2">1</span> Cart</button>
-                        <button class="flex text-sm text-gray-700 ml-8 focus:outline-none"><span class="flex items-center justify-center border-2 border-blue-500 rounded-full h-5 w-5 mr-2">2</span> Checkout</button>
+                        <button class="flex text-sm text-blue-500 focus:outline-none"><span class="flex items-center justify-center border-2 border-gray-500 rounded-full h-5 w-5 mr-2">1</span> Cart</button>
+                        <button class="flex text-sm text-gray-700 ml-8 focus:outline-none"><span class="flex items-center justify-center text-white bg-blue-500 rounded-full h-5 w-5 mr-2">2</span> Checkout</button>
                         <button class="flex text-sm text-gray-500 ml-8 focus:outline-none" disabled><span class="flex items-center justify-center border-2 border-gray-500 rounded-full h-5 w-5 mr-2">3</span> Order</button>
                     </div>
-                    <form method="POST" action="{{ route('store.address') }}" class="mt-8 lg:w-3/4">
+                    <form method="POST" action="{{ route('update.address', ['id' => $user->id]) }}" class="mt-8 lg:w-3/4">
                         @csrf
                         <div>
                             <h4 class="text-sm text-gray-500 font-medium">Delivery method</h4>
                             <div class="mt-6">
                                 <button class="flex items-center justify-between w-full bg-white rounded-md border-2 border-blue-500 p-4 focus:outline-none">
                                     <label class="flex items-center">
-                                        <input type="radio" class="form-radio h-5 w-5 text-blue-600" checked><span class="ml-2 text-sm text-gray-700">MS Delivery</span>
+                                        <input type="radio" class="form-radio h-5 w-5 text-blue-600" checked><span class="ml-2 text-sm text-gray-700">Cash On Delivery</span>
                                     </label>
 
-                                    <span class="text-gray-600 text-sm">$18</span>
-                                </button>
-                                <button class="mt-6 flex items-center justify-between w-full bg-white rounded-md border p-4 focus:outline-none">
-                                    <label class="flex items-center">
-                                        <input type="radio" class="form-radio h-5 w-5 text-blue-600"><span class="ml-2 text-sm text-gray-700">DC Delivery</span>
-                                    </label>
-
-                                    <span class="text-gray-600 text-sm">$26</span>
+                                    <span class="text-gray-600 text-sm">50 Tk</span>
                                 </button>
                             </div>
                         </div>
                         <div class="mt-8">
-                            <h4 class="text-sm text-gray-500 font-medium">Delivery address</h4>
+                            <h4 class="text-sm text-gray-500 font-medium">Delivery Information</h4>
                             <div class="mt-6 flex">
                                 <label class="block w-3/12">
-                                    <select class="form-select text-gray-700 mt-1 block w-full" name="city">
-                                        <option value="Dhaka">Dhaka</option>
-                                        <option value="Rajshahi">Rajshahi</option>
-                                        <option value="Khulna">Khulna</option>
-                                        <option value="Chittagong">Chittagong</option>
-                                        <option value="Barisal">Barisal</option>
-                                        <option value="Rangpur">Rangpur</option>
+                                    City: <select class="form-select text-gray-700 mt-1 block w-full" name="city">
+                                        <option value="Dhaka" <?php if($user->city == "Dhaka") echo "selected"; ?>>Dhaka</option>
+                                        <option value="Tangail" <?php if($user->city == "Tangail") echo "selected"; ?>>Tangail</option>
+                                        <option value="Rajshahi" <?php if($user->city == "Rajshahi") echo "selected"; ?>>Rajshahi</option>
+                                        <option value="Khulna" <?php if($user->city == "Khulna") echo "selected"; ?>>Khulna</option>
+                                        <option value="Chittagong" <?php if($user->city == "Chittagong") echo "selected"; ?>>Chittagong</option>
+                                        <option value="Barisal" <?php if($user->city == "Barisal") echo "selected"; ?>>Barisal</option>
+                                        <option value="Barisal" <?php if($user->city == "Barisal") echo "selected"; ?>>Cumilla</option>
+                                        <option value="Rangpur" <?php if($user->city == "Rangpur") echo "selected"; ?>>Rangpur</option>
                                     </select>
                                 </label>
                                 <label class="block flex-1 ml-3">
-                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" placeholder="{{ $user->phone }}">
+                                    Phone: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" value="{{ $user->phone }}">
                                 </label>
                             </div>
                         </div>
                         <div class="mt-8">
-                            <h4 class="text-sm text-gray-500 font-medium">Address</h4>
                             <div class="mt-6 flex">
-                                <label class="block flex-1 ml-0">
-                                    <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" placeholder="{{ $user->address }}">
+                                <label class="block w-3/12">
+                                    ZIP: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="zip" value="{{ $user->zip }}">
+                                </label>
+                                <label class="block flex-1 ml-3">
+                                    Address: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" value="{{ $user->address }}">
                                 </label>
                             </div>
                         </div>
