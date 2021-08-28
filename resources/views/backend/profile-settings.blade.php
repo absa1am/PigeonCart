@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('Account Settings') }}
         </h2>
     </x-slot>
 
@@ -16,16 +16,11 @@
                           <!-- component -->
                           <section class="py-40 bg-gray-100  bg-opacity-50 h-screen">
                               <form method="POST" action="{{ route('update-settings', ['id' => Auth::user()->id]) }}">
+                                @csrf
                                 <div class="mx-auto container max-w-2xl md:w-3/4 shadow-md">
                                   <div class="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-400 rounded-t">
                                     <div class="max-w-sm mx-auto md:w-full md:mx-0">
                                       <div class="inline-flex items-center space-x-4">
-                                        <img
-                                          class="w-10 h-10 object-cover rounded-full"
-                                          alt="User avatar"
-                                          src="https://avatars3.githubusercontent.com/u/72724639?s=400&u=964a4803693899ad66a9229db55953a3dbaad5c6&v=4"
-                                        />
-
                                         <h1 class="text-gray-600">{{ $user->name }}</h1>
                                       </div>
                                     </div>
@@ -66,7 +61,7 @@
                                       <h2 class="md:w-1/3 mx-auto max-w-sm">Personal Info</h2>
                                       <div class="md:w-2/3 mx-auto max-w-sm space-y-5">
                                         <div>
-                                          <label class="text-sm text-gray-400">Full Name</label>
+                                          <label class="text-sm text-gray-400">Name</label>
                                           <div class="w-full inline-flex border">
                                             <div class="w-1/12 pt-2 bg-gray-100">
                                               <svg
@@ -85,35 +80,43 @@
                                             </div>
                                             <input
                                               type="text"
-                                              class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
-                                              placeholder="{{ $user->name }}"
+                                              class="w-11/12 focus:outline-none focus:text-gray-600 p-2" value="{{ $user->name }}"
+                                              placeholder="John Doe"
                                             />
                                           </div>
                                         </div>
+
                                         <div>
-                                          <label class="text-sm text-gray-400">Phone Number</label>
-                                          <div class="w-full inline-flex border">
-                                            <div class="pt-2 w-1/12 bg-gray-100">
-                                              <svg
-                                                fill="none"
-                                                class="w-6 text-gray-400 mx-auto"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                              >
-                                                <path
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                                />
-                                              </svg>
-                                            </div>
-                                            <input
-                                              type="text"
-                                              class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
-                                              placeholder="12341234"
-                                            />
+                                            <div class="mt-6 flex">
+                                              <label class="block w-3/12">
+                                                  City: <select class="form-select text-gray-700 mt-1 block w-full" name="city">
+                                                      <option value="Dhaka" <?php if($user->city == "Dhaka") echo "selected"; ?>>Dhaka</option>
+                                                      <option value="Tangail" <?php if($user->city == "Tangail") echo "selected"; ?>>Tangail</option>
+                                                      <option value="Rajshahi" <?php if($user->city == "Rajshahi") echo "selected"; ?>>Rajshahi</option>
+                                                      <option value="Khulna" <?php if($user->city == "Khulna") echo "selected"; ?>>Khulna</option>
+                                                      <option value="Chittagong" <?php if($user->city == "Chittagong") echo "selected"; ?>>Chittagong</option>
+                                                      <option value="Barisal" <?php if($user->city == "Barisal") echo "selected"; ?>>Barisal</option>
+                                                      <option value="Barisal" <?php if($user->city == "Barisal") echo "selected"; ?>>Cumilla</option>
+                                                      <option value="Rangpur" <?php if($user->city == "Rangpur") echo "selected"; ?>>Rangpur</option>
+                                                  </select>
+                                              </label>
+                                              <label class="block flex-1 ml-3">
+                                                  Phone: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" value="{{ $user->phone }}">
+                                              </label>
                                           </div>
+                                        </div>
+
+                                        <div>
+                                        <div class="mt-8">
+                                            <div class="mt-6 flex">
+                                                <label class="block w-3/12">
+                                                    ZIP: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="zip" value="{{ $user->zip }}">
+                                                </label>
+                                                <label class="block flex-1 ml-3">
+                                                    Address: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" value="{{ $user->address }}">
+                                                </label>
+                                            </div>
+                                        </div>
                                         </div>
                                       </div>
                                     </div>
