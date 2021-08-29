@@ -104,6 +104,28 @@ class OrderController extends Controller
         return view('backend.edit-order', ['order' => $order]);
     }
 
+    // For customer control
+    public function cancel($id)
+    {
+        $order = Order::findOrFail($id);
+    
+        $order->status = "Cancelled";
+        $order->save();
+
+        return redirect()->back();
+    }
+
+    // For customer control
+    public function reorder($id)
+    {
+        $order = Order::findOrFail($id);
+
+        $order->status = "Pending";
+        $order->save();
+
+        return redirect()->back();
+    }
+
     /**
      * Update the specified resource in storage.
      *

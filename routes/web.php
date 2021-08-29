@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/order', [OrderController::class, 'store'])->name('order');
     Route::get('/order-history', [OrderController::class, 'history'])->name('history');
     Route::get('/view-order/{id}', [OrderController::class, 'show'])->name('view.order');
+    Route::get('/cancel-order/{id}', [OrderController::class, 'cancel'])->name('cancel.order');
+    Route::get('/reorder/{id}', [OrderController::class, 'reorder'])->name('reorder.order');
 
     Route::post('/update-address/{id}', [UserController::class, 'updateAddress'])->name('update.address');
 });
