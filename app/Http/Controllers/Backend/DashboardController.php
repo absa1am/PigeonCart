@@ -29,9 +29,8 @@ class DashboardController extends Controller
         foreach($completedOrders as $order)
             $sales += $order->grandtotal;
 
-        $user = Auth::user();
-        if($user->roles[0]->name == 'Customer') {
-            return view('user-dashboard', ['user' => $user]);
+        if(Auth::user()->roles[0]->name == 'Customer') {
+            return view('user-dashboard', ['user' => Auth::user()]);
         }
 
         return view('dashboard', ['orders' => $orders, 'totalOrders' => $totalOrders, 'sales' => $sales, 'user' => $user, 'totalUser' => $totalUser]);
