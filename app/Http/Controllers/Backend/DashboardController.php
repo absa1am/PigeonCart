@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
@@ -27,6 +28,11 @@ class DashboardController extends Controller
         $sales = 0;
         foreach($completedOrders as $order)
             $sales += $order->grandtotal;
+
+        $user = Auth::user();
+        if($user->roles[0]->name == 'Customer') {
+            return view('user-dashboard', ['user' => $user]);
+        }
 
         return view('dashboard', ['orders' => $orders, 'totalOrders' => $totalOrders, 'sales' => $sales, 'user' => $user, 'totalUser' => $totalUser]);
     }
