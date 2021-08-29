@@ -101,7 +101,7 @@
                                                   </select>
                                               </label>
                                               <label class="block flex-1 ml-3">
-                                                  Phone: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" value="{{ $user->phone }}">
+                                                  Phone: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="phone" value="{{ $user->phone }}" placeholder="01XXXXXXXXX">
                                               </label>
                                           </div>
                                         </div>
@@ -110,10 +110,10 @@
                                           <div class="mt-8">
                                               <div class="mt-6 flex">
                                                   <label class="block w-3/12">
-                                                      ZIP: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="zip" value="{{ $user->zip }}">
+                                                      ZIP: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="zip" value="{{ $user->zip }}" placeholder="1234">
                                                   </label>
                                                   <label class="block flex-1 ml-3">
-                                                      Address: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" value="{{ $user->address }}">
+                                                      Address: <input type="text" class="form-input mt-1 block w-full text-gray-700" name="address" value="{{ $user->address }}" placeholder="Shipping address here...">
                                                   </label>
                                               </div>
                                           </div>
