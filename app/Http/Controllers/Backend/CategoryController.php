@@ -57,7 +57,7 @@ class CategoryController extends Controller
             'slug' => $request->slug
         ]);
 
-        return redirect()->route('view.categories');
+        return redirect()->route('view.categories')->with('message', 'Successfully category created!');
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->save();
 
-        return redirect()->route('view.categories');
+        return redirect()->route('view.categories')->with('message', 'Successfully updated category!');
     }
 
     /**
@@ -114,6 +114,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully deleted category!');
     }
 }
