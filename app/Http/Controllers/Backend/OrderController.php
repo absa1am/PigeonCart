@@ -141,7 +141,7 @@ class OrderController extends Controller
         $order->status = $request->status;
         $order->save();
 
-        return redirect()->back();
+        return redirect()->route('view.orders')->with('message', 'Successfully updated order!');
     }
 
     /**
