@@ -36,7 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/delete-cart/{product_id}', [CartController::class, 'destroy'])->name('delete.cart');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
     Route::post('/order', [OrderController::class, 'store'])->name('order');
+    Route::get('/order-history', [OrderController::class, 'history'])->name('history');
+    Route::get('/view-order/{id}', [OrderController::class, 'show'])->name('view.order');
 
     Route::post('/update-address/{id}', [UserController::class, 'updateAddress'])->name('update.address');
 });

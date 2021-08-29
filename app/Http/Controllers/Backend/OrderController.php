@@ -23,6 +23,13 @@ class OrderController extends Controller
         return view('backend.view-orders', ['orders' => $orders]);
     }
 
+    public function history()
+    {
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+
+        return view('frontend.order-history', ['orders' => $orders]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -79,7 +86,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        return $order;
     }
 
     /**
