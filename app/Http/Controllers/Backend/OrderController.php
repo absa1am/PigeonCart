@@ -156,6 +156,6 @@ class OrderController extends Controller
 
         $order->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully deleted order!');
     }
 }
