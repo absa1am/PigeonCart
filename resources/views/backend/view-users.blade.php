@@ -57,7 +57,7 @@
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                       <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
-                                        <a href="">Edit</a>
+                                        <a href="{{ route('edit.user', ['id' => $user->id]) }}">Edit</a>
                                       </button>
                                       <button class="modal-open bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
                                         Delete
