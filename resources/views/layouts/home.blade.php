@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo" style="color: indigo;">
-                        <h2>Demo</h2>
+                        <h2 style="font-size: 25px; font-weight: bolder; color: white;">Pigeon Cart</h2>
                     </div>
 
                     <nav>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <hr>
-                <p class="copyright">Copyright 2021 - Demo</p>
+                <p class="copyright">Copyright 2021 - Pigeon Cart</p>
             </div>
         </div>
     </body>
