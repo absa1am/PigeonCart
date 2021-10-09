@@ -40,7 +40,7 @@
 
                             @if (Route::has('login'))
                                 @auth
-                                    <li><a href="{{ route('cart') }}">Cart({{ count(array(Auth::user()->carts)) }})</a></li>
+                                    <li><a href="{{ route('cart') }}">Cart({{ count(\App\Models\Cart::where([['user_id', Auth::user()->id], ['status', 'Pending']])->get()) }})</a></li>
                                     @if(Auth::user()->hasRole('Customer'))
                                         <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
                                     @endif
