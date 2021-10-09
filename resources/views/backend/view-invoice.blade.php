@@ -27,7 +27,7 @@
                                 <div class="col-xs-6">
                                     <address>
                                     <strong>Product From:</strong><br>
-                                        Demo<br>
+                                        Pigeon Cart<br>
                                         Dept. CSE, MBSTU<br>
                                         Santosh, Tangail - 1902
                                     </address>
