@@ -122,6 +122,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully deleted account!');
     }
 }
